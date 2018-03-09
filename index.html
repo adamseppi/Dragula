@@ -1,0 +1,62 @@
+<!doctype html>
+<head>
+<link href='dragula.css' rel='stylesheet' type='text/css' />
+<link href='example.css' rel='stylesheet' type='text/css' />
+<title>angularjs-dragula</title>
+</head>
+<body ng-app="angularjs-dragula-example">
+<h3 class='tagline'>Drag and drop so simple it hurts</h3>
+
+<div class='parent'>Note: these examples mimic the ones for <code>dragula</code>, but using <code>angularjs-dragula</code>.</div>
+
+  <div class='parent' ng-controller='RepeatCtrl'>
+    <label for='hy'><strong>Angular-specific example.</strong> Fancy some <code>ng-repeat</code>?</label>
+    <div class='wrapper'>
+        <div class="companySection">
+            <div class="slots">
+                <div class="slot">
+                    <p>Primary</p>
+                </div>
+                <div class="slot">
+                    <p>Secondary</p>
+                </div>
+                <div class="slot">
+                    <p>Teritary</p>    
+                </div>
+            </div>
+            <div class="articles" dragula='"articleDrag"' dragula-model="articles">
+                <div class="article" ng-repeat="article in articles">
+                    <p class="articleTitle">{{article.name}}</p>
+                    <p class="date">{{article.date}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='wrapper'>
+      <div class='container'><pre>{{articles | json}}</pre></div>
+    </div>
+    <pre>
+      <code>
+&lt;div class='wrapper'&gt;
+      &lt;div class='container' dragula='&quot;another-bag&quot;' dragula-model='many'&gt;
+        &lt;div ng-repeat='text in many' ng-bind='text'&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class='container' dragula='&quot;another-bag&quot;' dragula-model='many2'&gt;
+        &lt;div ng-repeat='text in many2' ng-bind='text'&gt;&lt;/div&gt;        
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+app.controller('RepeatCtrl', ['$scope', 'dragulaService',
+  function ($scope, dragulaService) {
+    $scope.many = ['The', 'possibilities', 'are', 'endless!'];
+    $scope.many2 = ['Explore', 'them'];
+  }
+]);
+      </code>
+    </pre>
+  </div>
+
+<script src='angular.js'></script>
+<script src='angularjs-dragula.min.js'></script>
+<script src='app.js'></script>
+</body>
